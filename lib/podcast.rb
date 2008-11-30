@@ -1,9 +1,6 @@
 require 'rubygems'
 require 'open-uri'
-require 'syndication/rss'
-require 'syndication/podcast'
-
-require 'xspf'
+require 'nokogiri'
 
 module Snowpea
   class Podcast
@@ -12,34 +9,47 @@ module Snowpea
         raise ArgumentError.new('Podcast URL not provided')
       end
 
-      @parser = Syndication::RSS::Parser.new
-      @feed = @parser.parse open(args[:url])
+      begin
+        @handle = open(args[:url])
+        @feed = Nokogiri::XML @handle
+      rescue OpenURI::HTTPError => e
+      end
     end
     
-    def to_xspf
-      @trackList = XSPF::Tracklist.new
-      @feed.items.each do |item|
-        @trackList << XSPF::Track.new(
-          :location   => item.enclosure.url,
-          :identifier => item.guid,
-          :title      => item.title,
-          :image      => @feed.channel.itunes_image['href']
-        )
+    def feed
+      @feed
+    end
+    
+    def casts
+      casts = []
+      @feed.xpath('//item').each do |item|
+        url = title = ''
+        
+        item.children.each do |child|
+          title = child.content if child.name =~ /^title$/i
+          url = child.attributes['url'] if child.name =~ /^enclosure$/i
+        end
+        
+        puts "url #{url}, title #{title}"
+
+        cast = PodcastElement.new :url => url, :title => title
+        casts.push cast
       end
       
-      playlist = XSPF::Playlist.new( {
-         :xmlns => 'http://xspf.org/ns/0/',
-         :title => 'Tout est calme',
-         :creator => 'Yann Tiersen',
-         :license => 'Redistribution or sharing not allowed',
-         :info => 'http://www.yanntiersen.com/',
-         :tracklist => @trackList,
-         :meta_rel => 'http://www.example.org/key',
-         :meta_content => 'value',
-       })
-       xspf = XSPF.new( { :playlist => playlist } )
-       
-       return xspf
+      return casts
+    end
+  end
+  
+  class PodcastElement
+    attr_accessor :title, :url
+    
+    def initialize(args)
+      if not args[:url]
+        raise ArgumentError.new("Missing title or URL for podcast element")
+      end
+      
+      self.url = args[:url]
+      self.title = (args[:title]) ? args[:title] : args[:url]
     end
   end
 end
