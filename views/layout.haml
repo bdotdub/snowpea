@@ -4,8 +4,11 @@
     %title
       SNOWPEA
     %meta{ 'http-equiv' => 'Content-Type', :content => 'text/html; charset=utf-8' }
+    %link{ :rel => 'stylesheet', :href => '/stylesheets/snowpea.css', :type => 'text/css', :media => 'screen' }
   %body
     = haml :header, :layout => :none
+    - if @notice
+      .notice= @notice
     #content
       = yield
     = haml :footer, :layout => :none
