@@ -5,30 +5,98 @@
 body
   :font-family Georgia, "Times New Roman", serif
   :background url('/images/bg.gif')
-  :border-top 15px solid #9c6
+  :font-size 16px
   
 h1.logo
-  :text-indent -1000px
-  :height 150px
-  :width 450px
   :background url('/images/snowpea.png') no-repeat center center
-  :margin auto
+  :text-indent -2000px
+  a
+    :margin auto
+    :display block
+    :height 150px
+    :width 450px
 
 #line
   :width 100%
-  :border-top 5px solid #8b4513
+  :border-bottom 5px solid #8b4513
+  :background-color #9c6
   :margin-bottom 15px
+  :height 28px
+  :text-align center
+  a
+    :margin auto
+    :width 90%
+    :color #ffffff
+    :font-weight bold
+    :display block
+    :padding 3px
+    :font-size 18px
+    :font-variant small-caps
+
+#podcast-url
+  :margin 10px auto
+  :font-size 28px
+  :width 575px
+  input
+    :font-size 20px
+    :padding 10px
+  input[type='text']
+    :width 325px
+  input[type='submit']
+    :width 28px
+
+#podcast-box
+  :display none
 
 #content
-  :width 600px
+  :width 450px
   :margin 20px auto
   
-  #podcast-url
-    :font-size 28px
-    input
-      :font-size 20px
-      :padding 10px
+  #info
+    :margin 20px auto
+    :width 450px
+    h2
+      :font-size 28px
+    h3
+      :font-size 12px
+    .more-info-hover
+      :display none
+    #more-info
+      :display none
+      :margin 5px 0
+      :padding 10px 0
+      #image img
+        :border 5px solid #b3daae
+    #more-info-link
+      :clear both
   
   #player
     :margin auto
     :width 450px
+
+.index-title
+  :border-top 10px solid #9c6
+  :color #632
+  :margin-top 10px
+
+p, small
+  :padding 10px 0
+  :display block
+  :line-height 1.4em
+
+#footer
+  :width 450px
+  :text-align center
+  :margin auto
+  :font-size 14px
+  :border-top 1px dotted #d9a
+  :padding 10px 0
+  a
+    :color #006600
+
+a
+  :color #18b500
+  :text-decoration none
+
+a img
+  :border none

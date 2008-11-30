@@ -1,7 +1,21 @@
-#player
-  %object{ :type => 'application/x-shockwave-flash', :data => '/music/multi.swf', :width => 450, :height => 300 }
-    %param{ :name => 'movie', :value => '/music/multi.swf' }
-    %param{ :name => 'bgcolor', :value => '#ffffff' }
-    %param{ :name => 'FlashVars', :value => "mp3=#{@mp3_string}&title=#{@title_string}&width=450&amp;height=300&config=/player.config" }
+#content
+  #info
+    %h2= @title
+    %h3
+      %a{ :href => "#{@podcast_url}", :title => "#{@title}" }
+        = @podcast_url
+    #more-info
+      #image
+        %img{ :src => @image, :width => '125px', :align => 'right' }
+      #description
+        %h4 Description
+        = @description
+    %center#more-info-link
+      %a{ :href=> '#' }
+        %img#more-info-arrow{ :src => '/images/arrow.gif', :alt => 'More info' }
 
-#info
+  #player
+    %object{ :type => 'application/x-shockwave-flash', :data => '/music/multi.swf', :width => 450, :height => 300 }
+      %param{ :name => 'movie', :value => '/music/multi.swf' }
+      %param{ :name => 'bgcolor', :value => '#ffffff' }
+      %param{ :name => 'FlashVars', :value => "mp3=#{@mp3_string}&title=#{@title_string}&width=450&amp;height=300&config=/player.config" }

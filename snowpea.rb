@@ -16,16 +16,24 @@ get '/listen' do
     podcast = Snowpea::Podcast.new(:url => @url)
     casts = podcast.casts
     
-    @mp3 = casts.collect do |elem| elem.url end
-    @title = casts.collect do |elem| elem.title end
+    if casts.length == 0
+      @notice = 'We could not find any podcasts to play. If you think this is a mistake, let us know!'
+    else
+      @mp3 = casts.collect do |elem| elem.url end
+      @title = casts.collect do |elem| elem.title end
     
-    @mp3_string = @mp3.join('|')
-    @title_string = @title.join("|")
+      @mp3_string = @mp3.join('|')
+      @title_string = @title.join("|")
     
-    puts "mp3 string: #{@mp3_string}"
-    puts "title string: #{@title_string}"
+      image = podcast.image
+      @image = image.nil? ? '/images/podcast.png' : image
     
-    haml :listen
+      @description = podcast.description
+      @title = podcast.title
+      @podcast_url = podcast.url
+    
+      haml :listen
+    end
   else
     @notice = 'Please enter a Feed'
     haml :index

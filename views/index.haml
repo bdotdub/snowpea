@@ -1,5 +1,17 @@
 #podcast-url
-  podcast url: 
-  %input{ :type => 'text' }
+  %center
+    %form{ :action => '/listen', :method => 'get' }
+      RSS URL:
+      %input{ :type => 'text', :name => 'url', :value => "#{@podcast_url}" }
+      %input{ :type => 'submit', :value => '&raquo;' }
 
-index!
+#content
+  %h3.index-title Welcome to Snowpea
+  %p
+    Ever wanted to listen to a podcast, but don't want to deal with iTunes or any other player? Snowpea lets you listen to a podcast, right from your browser!
+  %p
+    Just copy and past the podcast RSS URL into the box above, and you're good to go!
+  %small
+    Not sure how to get the RSS URL? Click here
+  %h3.index-title Recently listened to
+  
