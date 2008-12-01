@@ -12,9 +12,13 @@
     %script{ :src => '/javascripts/jquery.js', :type => 'text/javascript' }
     %script{ :src => '/javascripts/thickbox.js', :type => 'text/javascript' }
     %script{ :src => '/javascripts/snowpea.js', :type => 'text/javascript' }
+    %script{ :src => 'http://snowpea.uservoice.com/pages/general/widgets/tab.js?alignment=right&amp;color=00BCBA', :type => 'text/javascript' }
   %body
     = haml :header, :layout => :none
     - if @notice
-      .notice= @notice
+      #notice
+        #close
+          %a{ :href => '#' } close
+        = @notice
     = yield
     = haml :footer, :layout => :none
