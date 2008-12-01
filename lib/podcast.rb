@@ -1,6 +1,6 @@
 require 'rubygems'
 require 'open-uri'
-require 'nokogiri'
+require 'hpricot'
 
 module Snowpea
   class Podcast
@@ -13,18 +13,15 @@ module Snowpea
         raise ArgumentError.new('Podcast URL not provided')
       end
 
-      begin
-        @handle = open(args[:url])
-        @feed = Nokogiri::XML @handle
-      rescue OpenURI::HTTPError => e
-      end
+      @handle = open(args[:url])
+      @feed = Hpricot.XML @handle
     end
     
     def image
-      image = @feed.xpath('//channel/image/url').text
+      image = (@feed/:channel/:image/:url).text
       
       if not image or image == ''
-        image = @feed.xpath('//itunes:image/@href', 'itunes' => ITUNES_NS).text
+        image = (@feed/:channel).%('itunes:image')['href']
       end
         
       return nil if not image or image == ''
@@ -32,21 +29,21 @@ module Snowpea
     end
     
     def title
-      title = @feed.xpath('//channel/title').text
+      title = (@feed/:channel/:title).text
       
       return nil if not title or title == ''
       return title
     end
     
     def url
-      link = @feed.xpath('//channel/link').text
+      link = (@feed/:channel/:link).text
       
       return nil if not link or link == ''
       return link
     end
     
     def description
-      description = @feed.xpath('//channel/description').text
+      description = (@feed/:channel/:description).text
       
       return nil if not description or description == ''
       return description
@@ -54,7 +51,7 @@ module Snowpea
     
     def casts
       casts = []
-      @feed.xpath('//item').each do |item|
+      (@feed/:channel/:item).each do |item|
         url = title = ''
         
         item.children.each do |child|
