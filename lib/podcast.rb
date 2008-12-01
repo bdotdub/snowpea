@@ -27,14 +27,14 @@ module Snowpea
     end
     
     def title
-      title = (@feed/:channel/:title).text
+      title = (@feed/"channel/title").text
       
       return nil if not title or title == ''
       return title
     end
     
     def url
-      link = (@feed/:channel/:link).text
+      link = (@feed/"channel/link").text
       
       return nil if not link or link == ''
       return link
@@ -52,9 +52,10 @@ module Snowpea
       (@feed/:channel/:item).each do |item|
         url = title = ''
         
-        item.children.each do |child|
-          title = child.content if child.name =~ /^title$/i
-          url = child.attributes['url'] if child.name =~ /^enclosure$/i
+        title = (item/:title).text
+        enclosure = (item/:enclosure)
+        if enclosure.length > 0
+          url = (item/:enclosure)[0]['url']
         end
         
         begin
