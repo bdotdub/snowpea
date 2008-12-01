@@ -12,7 +12,7 @@ end
 
 get '/listen' do
   @url = params[:url]
-  if @url
+  if @url and not @url.empty?
     begin
       podcast = Snowpea::Podcast.new(:url => @url)
       casts = podcast.casts

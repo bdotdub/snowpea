@@ -9,7 +9,7 @@ module Snowpea
     attr_reader :feed
     
     def initialize(args)
-      if not args[:url]
+      if not args[:url] or args[:url].empty?
         raise ArgumentError.new('Podcast URL not provided')
       end
 
