@@ -4,8 +4,6 @@ require 'hpricot'
 
 module Snowpea
   class Podcast
-    ITUNES_NS = 'http://www.itunes.com/dtds/podcast-1.0.dtd'
-    
     attr_reader :feed
     
     def initialize(args)
