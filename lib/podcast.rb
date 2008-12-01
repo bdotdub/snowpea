@@ -41,7 +41,7 @@ module Snowpea
     end
     
     def description
-      description = (@feed/:channel/:description).text
+      description = (@feed/"channel/description").text
       
       return nil if not description or description == ''
       return description
