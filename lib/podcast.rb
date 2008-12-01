@@ -16,7 +16,7 @@ module Snowpea
     end
     
     def image
-      image = (@feed/:channel/:image/:url).text
+      image = (@feed/"channel/image/url").text
       
       if not image or image == ''
         image = (@feed/:channel).%('itunes:image')['href']

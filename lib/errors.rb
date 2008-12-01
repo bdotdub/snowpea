@@ -1,5 +1,5 @@
 module Snowpea
-  AmbiguousError = "<p>Oops! Something went wrong. Possible reasons for the this
+  AmbiguousError = "<p>Oops! Something went wrong. Possible reasons for this
                   could be:</p>
                   <ul>
                     <li>Podcast URL was not found or mistyped</li>

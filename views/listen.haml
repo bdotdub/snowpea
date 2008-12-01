@@ -5,8 +5,9 @@
       %a{ :href => "#{@podcast_url}", :title => "#{@title}" }
         = @podcast_url
     #more-info
-      #image
-        %img{ :src => @image, :width => '125px', :align => 'right' }
+      - if @image and not @image.empty?
+        #image
+          %img{ :src => @image, :width => '125px', :align => 'right' }
       #description
         %h4 Description
         = @description

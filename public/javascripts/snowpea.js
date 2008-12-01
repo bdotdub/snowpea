@@ -5,10 +5,7 @@ $(document).ready(function() {
   });
   
   if ($('#notice')) {
-    $('#notice').fadeIn().animate({ opacity: 1.0 }, 2000
-    ).animate({
-      opacity: 0.6
-    });
+    $('#notice').fadeIn();
     
     $('#notice #close').click(function() {
       $('#notice').stop();
