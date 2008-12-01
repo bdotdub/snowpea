@@ -1,5 +1,5 @@
 require 'rubygems'
-require 'sinatra'
+require 'sinatra/lib/sinatra.rb'
 
 require 'lib/podcast'
 require 'lib/errors'
