@@ -2,10 +2,11 @@
 %html{ :xmlns => "http://www.w3.org/1999/xhtml", :lang => "en", 'xml:lang' => "en" }
   %head
     %title
-      SNOWPEA
+      SNOWPEA : 
       - if @title
-        \:
         = @title
+      - else
+        Listen to Podcasts, right in your browser
     %meta{ 'http-equiv' => 'Content-Type', :content => 'text/html; charset=utf-8' }
     %link{ :rel => 'stylesheet', :href => '/stylesheets/thickbox.css', :type => 'text/css', :media => 'screen' }
     %link{ :rel => 'stylesheet', :href => '/stylesheets/snowpea.css', :type => 'text/css', :media => 'screen' }
