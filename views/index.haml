@@ -1,9 +1,4 @@
-#podcast-url
-  %center
-    %form{ :action => '/listen', :method => 'get' }
-      RSS URL:
-      %input{ :type => 'text', :name => 'url', :value => "#{@podcast_url}" }
-      %input{ :type => 'submit', :value => '&raquo;' }
+= haml :podcasturl, :layout => :none
 
 #content
   %h3.index-title Welcome to Snowpea
@@ -13,5 +8,14 @@
     Just copy and past the podcast RSS URL into the box above, and you're good to go!
   %small
     Not sure how to get the RSS URL? Click here
-  %h3.index-title Recently listened to
+  %h3.index-title Some Podcasts to Get Started
+  %ul
+    %li
+      %a{ :href => '/listen?url=http%3A%2F%2Ffeeds.theonion.com%2Ftheonion%2Fradionews', :title => 'The Onion Radio News' } The Onion Radio News
+    %li
+      %a{ :href => '/listen?url=http%3A%2F%2Fblog.stackoverflow.com%2Findex.php%3Ffeed%3Dpodcast', :title => 'Stack Overflow Podcast' } Stack Overflow Podcast
+    %li
+      %a{ :href => '/listen?url=http%3A%2F%2Ffeedproxy.google.com%2Fabcnews_obama_address_podcast', :title => 'President-Elect Obama\'s Weekly Radio Address' } President-Elect Obama's Weekly Radio Address
   
+    %li
+      %a{ :href => '/listen?url=http%3A%2F%2Fwww.npr.org%2Frss%2Fpodcast.php%3Fid%3D35', :title => 'NPR: Wait wait ... don\'t tell me!' } NPR: Wait wait ... don't tell me!

@@ -1,0 +1,6 @@
+#podcast-url
+  %center
+    %form{ :action => '/listen', :method => 'get' }
+      RSS URL:
+      %input{ :type => 'text', :name => 'url', :value => "#{@podcast_url}" }
+      %input{ :type => 'submit', :value => '&raquo;' }

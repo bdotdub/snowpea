@@ -2,7 +2,7 @@ require 'rubygems'
 require 'sinatra'
 
 require 'lib/podcast'
-require 'xspf'
+require 'lib/errors'
 
 require 'cgi'
 
@@ -13,29 +13,35 @@ end
 get '/listen' do
   @url = params[:url]
   if @url
-    podcast = Snowpea::Podcast.new(:url => @url)
-    casts = podcast.casts
+    begin
+      podcast = Snowpea::Podcast.new(:url => @url)
+      casts = podcast.casts
     
-    if casts.length == 0
-      @notice = 'We could not find any podcasts to play. If you think this is a mistake, let us know!'
-    else
-      @mp3 = casts.collect do |elem| elem.url end
-      @title = casts.collect do |elem| elem.title end
+      if casts.length == 0
+        @notice = Snowpea::NoCasts
+        haml :podcasturl
+      else
+        @mp3 = casts.collect do |elem| elem.url end
+        @title = casts.collect do |elem| elem.title end
     
-      @mp3_string = @mp3.join('|')
-      @title_string = @title.join("|")
+        @mp3_string = @mp3.join('|')
+        @title_string = @title.join("|")
     
-      image = podcast.image
-      @image = image.nil? ? '/images/podcast.png' : image
+        image = podcast.image
+        @image = image.nil? ? '/images/podcast.png' : image
     
-      @description = podcast.description
-      @title = podcast.title
-      @podcast_url = podcast.url
+        @description = podcast.description
+        @title = podcast.title
+        @podcast_url = podcast.url
     
-      haml :listen
+        haml :listen
+      end
+    rescue
+      @notice = Snowpea::AmbiguousError
+      haml :podcasturl
     end
   else
-    @notice = 'Please enter a Feed'
+    @notice = 'Please enter a URL for the Podcast'
     haml :index
   end
 end
