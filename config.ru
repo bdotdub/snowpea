@@ -5,7 +5,7 @@ Sinatra::Application.default_options.merge!(
    :run => false,
    :env => :production,
    :raise_errors => true,
-   :root => File.dirname(__FILE__)
+   :root => File.dirname(__FILE__),
    :views => File.dirname(__FILE__) + '/views'
 )
 
