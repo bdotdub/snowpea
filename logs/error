@@ -1,0 +1,7 @@
+98.113.195.21 - - [19/Dec/2008 19:57:50] "GET / " 200 3249 0.2606
+98.113.195.21 - - [19/Dec/2008 19:57:51] "GET /stylesheets/snowpea.css " 200 2233 0.1301
+98.113.195.21 - - [19/Dec/2008 19:57:52] "GET /images/loadingAnimation.gif " 404 18 0.0011
+98.113.195.21 - - [19/Dec/2008 19:57:55] "GET /listen?url=http%3A%2F%2Fblog.stackoverflow.com%2Findex.php%3Ffeed%3Dpodcast " 200 3761 1.1298
+98.113.195.21 - - [19/Dec/2008 19:57:55] "GET /stylesheets/snowpea.css " 200 2233 0.0120
+98.113.195.21 - - [19/Dec/2008 19:57:55] "GET /images/loadingAnimation.gif " 404 18 0.0011
+98.113.195.21 - - [19/Dec/2008 19:57:56] "GET /images/loadingAnimation.gif " 404 18 0.0012
