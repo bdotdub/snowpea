@@ -15,18 +15,12 @@ get '/listen' do
   if @url and not @url.empty?
     begin
       podcast = Snowpea::Podcast.new(:url => @url)
-      casts = podcast.casts
+      @casts = podcast.casts
     
-      if casts.length == 0
+      if @casts.length == 0
         @notice = Snowpea::NoCasts
         haml :podcasturl
       else
-        @mp3 = casts.collect do |elem| elem.url end
-        @title = casts.collect do |elem| elem.title end
-    
-        @mp3_string = @mp3.join('|')
-        @title_string = @title.join("|")
-    
         image = podcast.image
         @image = image.nil? ? '/images/podcast.png' : image
     

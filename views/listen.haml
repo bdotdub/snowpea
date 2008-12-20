@@ -16,7 +16,23 @@
         %img#more-info-arrow{ :src => '/images/arrow.gif', :alt => 'More info' }
 
   #player
-    %object{ :type => 'application/x-shockwave-flash', :data => '/music/multi.swf', :width => 450, :height => 300 }
-      %param{ :name => 'movie', :value => '/music/multi.swf' }
-      %param{ :name => 'bgcolor', :value => '#ffffff' }
-      %param{ :name => 'FlashVars', :value => "mp3=#{@mp3_string}&title=#{@title_string}&width=450&amp;height=300&config=/player.config" }
+    %div
+      %span.back &larr;
+      %span.play play
+      %span.pause pause
+      %span.stop stop
+      %span.stop &rarr;
+      
+    .status
+      .loading
+      .progress
+        .progress-handle
+    
+    .volume
+      .volume-handle
+
+    %ul.playlist
+      - @casts.each do |cast|
+        %li
+          %a{ :href => cast.url, :onclick => 'return false' }
+            = cast.title

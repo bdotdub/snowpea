@@ -11,8 +11,14 @@
     %link{ :rel => 'stylesheet', :href => '/stylesheets/thickbox.css', :type => 'text/css', :media => 'screen' }
     %link{ :rel => 'stylesheet', :href => '/stylesheets/snowpea.css', :type => 'text/css', :media => 'screen' }
     %script{ :src => '/javascripts/jquery.js', :type => 'text/javascript' }
+    %script{ :src => '/javascripts/jquery-ui.js', :type => 'text/javascript' }
     %script{ :src => '/javascripts/thickbox.js', :type => 'text/javascript' }
     %script{ :src => '/javascripts/snowpea.js', :type => 'text/javascript' }
+    %script{ :src => '/javascripts/soundmanager2.js', :type => 'text/javascript' }
+    %script{ :src => '/javascripts/mushroom.js', :type => 'text/javascript' }
+    %script{ :type => 'text/javascript' }
+      soundManager.url = "/swf";
+      soundManager.onload = function() { $('#player').mushroom(); };
     %script{ :src => 'http://snowpea.uservoice.com/pages/general/widgets/tab.js?alignment=right&amp;color=8b4513', :type => 'text/javascript' }
   %body
     = haml :header, :layout => :none
