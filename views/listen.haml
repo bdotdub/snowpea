@@ -1,12 +1,15 @@
-#listen
-  #info
-    %h1.logo_mid
-      %a{ :href => '/', :title => 'SNOWPEA' } SNOWPEA
-  
+#banner
+  %h1.logo_mid
+    %a{ :href => '/', :title => 'SNOWPEA' } SNOWPEA
+
+  #title
     %h2= @title
     %h3
       %a{ :href => "#{@podcast_url}", :title => "#{@title}" }
         = @podcast_url
+
+#listen
+  #info
     #more-info
       - if @image and not @image.empty?
         #image

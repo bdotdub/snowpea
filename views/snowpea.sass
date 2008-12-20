@@ -16,15 +16,6 @@ h1.logo
     :height 150px
     :width 450px
 
-h1.logo_mid
-  :background url('/images/snowpea.mid.png') no-repeat center center
-  :text-indent -2000px
-  a
-    :margin auto
-    :display block
-    :height 100px
-    :width 288px
-
 #notice
   :display none
   :border 1px dotted #333
@@ -77,12 +68,30 @@ h1.logo_mid
     :margin-left 20px
     :padding 5px 0
 
-#listen  
+#banner
+  :height 100px
+  h1.logo_mid
+    :position absolute
+    :background url('/images/snowpea.mid.png') no-repeat center center
+    :text-indent -2000px
+    :border-right 1px solid green
+    a
+      :display block
+      :height 100px
+      :width 288px
+  #title
+    :position absolute
+    :margin-left 325px
+    :margin-top 10px
+
+#listen, #banner
   :width 700px
   :margin 20px auto
+  
+#listen
   #info
     :float left
-    :width 250px
+    :width 288px
     :border-right 1px solid red
     :position absolute
     h2
